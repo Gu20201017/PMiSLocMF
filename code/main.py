@@ -60,7 +60,7 @@ df_mRNA_feature = pd.read_csv('../feature/miRNA_mRNA_feature.csv',header=None)
 df_drug_feature = pd.read_csv('../feature/gate_feature_drug_0.8_128_0.01.csv',header=None)
 df_dis_feature = pd.read_csv('../feature/gate_feature_disease_0.8_128_0.01.csv',header=None)
 df_loc = pd.read_csv('../datasets/miRNA_localization.csv',header=None)
-df_loc_index = pd.read_csv('../datasets/miRNA_1041_have_loc_information_index.txt', header=None)
+df_loc_index = pd.read_csv('../datasets/miRNA_have_loc_information_index.txt', header=None)
 loc_index = df_loc_index[0].tolist()
 select_row = np.array([value == 1 for value in loc_index])
 

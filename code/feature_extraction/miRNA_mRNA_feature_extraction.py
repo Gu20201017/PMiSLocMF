@@ -7,7 +7,7 @@ from node2vec import Node2Vec
 df_miRNA_mRNA = pd.read_csv('../../datasets/miRNA_mRNA_matrix.txt',header=None,delimiter='\t')
 miRNA_mRNA_matrix = df_miRNA_mRNA.values
 
-df_mRNA_loc = pd.read_csv('../../datasets/mRNA_2836_loc_Cytoplasm&Exosome&Nucleolus&Nucleus_index.txt',header=None,delimiter='\t')
+df_mRNA_loc = pd.read_csv('../../datasets/mRNA_localization.txt', header=None, delimiter='\t')
 mRNA_loc = df_mRNA_loc.values
 
 miRNA_mRNA_ratio_vector = []
