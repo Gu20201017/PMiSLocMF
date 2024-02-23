@@ -23,7 +23,7 @@ for i in range(1041):
             G.add_edge(i, j, weight=similarity)
 
 # 创建 Node2Vec 对象
-node2vec = Node2Vec(G, dimensions=128, walk_length=150, num_walks=200, workers=1, weight_key='weight')
+node2vec = Node2Vec(G, dimensions=64, walk_length=150, num_walks=200, workers=1, weight_key='weight')
 
 # 训练模型
 model = node2vec.fit()
@@ -36,9 +36,9 @@ print(ms_features)
 df = pd.DataFrame.from_dict(ms_features, orient='index')
 
 # 重命名 DataFrame 的列名，将每一维作为一列
-df.columns = [f'Dimension_{i}' for i in range(128)]  # 列名可以根据需要自定义
+df.columns = [f'Dimension_{i}' for i in range(64)]  # 列名可以根据需要自定义
 
 # 添加索引名称
 df.index.name = 'Index'
 
-df.to_csv('../../feature/miRNA_seq_feature_128.csv')
+df.to_csv('../../feature/miRNA_seq_feature_64.csv')

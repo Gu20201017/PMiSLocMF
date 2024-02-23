@@ -8,8 +8,7 @@ from gate_trainer import GATETrainer
 
 
 df_drug = pd.read_csv('../../../feature/miRNA_drug_feature_128.csv', index_col=0)
-df_disease = pd.read_csv('../../../feature/miRNA_disease_feature_128.csv',index_col=0)
-df_func = pd.read_csv('../../../datasets/miRNA_func_sim.csv',header=None)
+df_func = pd.read_csv('../../../datasets/miRNA_func_sim.csv', header=None)
 
 feature = df_drug.values
 similarity = df_func.values
