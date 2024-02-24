@@ -2,7 +2,7 @@
 
 The PMiSLocMF is designed for the prediction of miRNA subcellular localizations. Several miRNA properties are employed to extract informative miRNA features, including miRNA sequence and functional similarity networks, miRNA-disease, miRNA-drug, and miRNA-mRNA association networks. The powerful algorithms (node2vec and graph attention auto-encoder) and one newly designed scheme are adopted to generate four miRNA feature types. These features are fed into the self-attention and fully connected layers to make predictions.
 
-![model](./model.png)
+![model](./model.jpg)
 
 ## Datasets
 The 'datasets' folder contains the raw data used in PMiSLocMF. Their specific sources are detailed in the paper. The following is a brief introduction on each file:
