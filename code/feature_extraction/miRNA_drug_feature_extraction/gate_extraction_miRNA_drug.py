@@ -7,12 +7,6 @@ import tensorflow._api.v2.compat.v1 as tf
 from gate_trainer import GATETrainer
 
 
-df_drug = pd.read_csv('../../../feature/miRNA_drug_feature_128.csv', index_col=0)
-df_func = pd.read_csv('../../../datasets/miRNA_func_sim.csv', header=None)
-
-feature = df_drug.values
-similarity = df_func.values
-
 def sim_thresholding(matrix: np.ndarray, threshold):
     matrix_copy = matrix.copy()
     matrix_copy[matrix_copy >= threshold] = 1
@@ -80,13 +74,19 @@ def parse_args(epochs,l):
 
     return parser.parse_args()
 
-#二值化
-network = sim_thresholding(similarity,0.8)
-adj, features = single_generate_graph_adj_and_feature(network, feature)
-embeddings = get_gate_feature(adj, features,100, 1)
-print(embeddings.shape)
+if __name__ == '__main__':
+    df_drug = pd.read_csv('../../../feature/miRNA_drug_feature_128.csv', index_col=0)
+    df_func = pd.read_csv('../../../datasets/miRNA_func_sim.csv', header=None)
 
-# 指定要保存的CSV文件的路径
-file_path = '../../../feature/gate_feature_drug_0.8_128_0.01.csv'
+    feature = df_drug.values
+    similarity = df_func.values
+    #二值化
+    network = sim_thresholding(similarity,0.8)
+    adj, features = single_generate_graph_adj_and_feature(network, feature)
+    embeddings = get_gate_feature(adj, features,100, 1)
+    print(embeddings.shape)
 
-np.savetxt(file_path, embeddings, delimiter=',',)
+    # 指定要保存的CSV文件的路径
+    file_path = '../../../feature/gate_feature_drug_0.8_128_0.01.csv'
+
+    np.savetxt(file_path, embeddings, delimiter=',',)
