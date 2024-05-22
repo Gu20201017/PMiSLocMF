@@ -42,4 +42,4 @@ The 'code' folder contains the relevant codes used in PMiSLocMF. The 'feature_ex
 
 ## Quick start
 
-Run main.py to Run PMiSLocMF
+Run code/main.py to Run PMiSLocMF
