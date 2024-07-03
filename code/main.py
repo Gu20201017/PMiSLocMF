@@ -55,24 +55,27 @@ def multi_evaluate(y_pred, y_test, M):
     Absolute_False = Absolute_False / N
     return Aiming, Coverage, Accuracy, Absolute_True, Absolute_False
 
+
 if __name__ == '__main__':
     df_seq_feature = pd.read_csv('../feature/miRNA_seq_feature_64.csv', index_col='Index')
-    df_mRNA_feature = pd.read_csv('../feature/miRNA_mRNA_feature.csv',header=None)
+    df_mRNA_co_loc_feature = pd.read_csv('../feature/miRNA_mRNA_co-localization_feature.csv',header=None)
+    df_mRNA_net_feature = pd.read_csv('../feature/gate_feature_mRNA_0.8_128_0.01.csv', header=None)
     df_drug_feature = pd.read_csv('../feature/gate_feature_drug_0.8_128_0.01.csv',header=None)
     df_dis_feature = pd.read_csv('../feature/gate_feature_disease_0.8_128_0.01.csv',header=None)
-    df_loc = pd.read_csv('../datasets/miRNA_localization.csv',header=None)
-    df_loc_index = pd.read_csv('../datasets/miRNA_have_loc_information_index.txt', header=None)
+    df_loc = pd.read_csv('../dataset/miRNA_localization.csv',header=None)
+    df_loc_index = pd.read_csv('../dataset/miRNA_have_loc_information_index.txt', header=None)
     loc_index = df_loc_index[0].tolist()
     select_row = np.array([value == 1 for value in loc_index])
 
     dis_feature = df_dis_feature.values
     seq_feature = df_seq_feature.values
-    mRNA_feature = df_mRNA_feature.values
+    mRNA_net_feature = df_mRNA_net_feature.values
+    mRNA_co_loc_feature = df_mRNA_co_loc_feature.values
     drug_feature = df_drug_feature.values
     miRNA_loc = df_loc.values
 
 
-    merge_feature = np.concatenate((seq_feature, dis_feature, drug_feature, mRNA_feature), axis=1)
+    merge_feature = np.concatenate((seq_feature, dis_feature, drug_feature, mRNA_net_feature, mRNA_co_loc_feature), axis=1)
 
     n_splits = 10
 
@@ -100,7 +103,7 @@ if __name__ == '__main__':
         X_train, X_test = X[train_indices], X[test_indices]
         y_train, y_test = y[train_indices], y[test_indices]
 
-        model = create_multi_label_model(input_shape=(324,), num_classes=num_classes)
+        model = create_multi_label_model(input_shape=(452,), num_classes=num_classes)
         model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
         model.fit(X_train, y_train, epochs=10, batch_size=32)
@@ -138,7 +141,7 @@ if __name__ == '__main__':
         X_train, X_test = X[train_indices], X[test_indices]
         y_train, y_test = y[train_indices], y[test_indices]
 
-        model = create_multi_label_model(input_shape=(324,), num_classes=num_classes)
+        model = create_multi_label_model(input_shape=(452,), num_classes=num_classes)
         model.compile(optimizer='adam', loss='binary_crossentropy', metrics=['accuracy'])
 
         model.fit(X_train, y_train, epochs=10, batch_size=32)

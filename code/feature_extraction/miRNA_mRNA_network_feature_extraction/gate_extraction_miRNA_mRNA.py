@@ -75,10 +75,10 @@ def parse_args(epochs,l):
     return parser.parse_args()
 
 if __name__ == '__main__':
-    df_drug = pd.read_csv('../../../feature/miRNA_drug_feature_128.csv', index_col=0)
+    df_mRNA = pd.read_csv('../../../feature/miRNA_mRNA_network_feature_128.csv', index_col=0)
     df_func = pd.read_csv('../../../dataset/miRNA_func_sim.csv', header=None)
 
-    feature = df_drug.values
+    feature = df_mRNA.values
     similarity = df_func.values
     #二值化
     network = sim_thresholding(similarity,0.8)
@@ -87,6 +87,6 @@ if __name__ == '__main__':
     print(embeddings.shape)
 
     # 指定要保存的CSV文件的路径
-    file_path = '../../../feature/gate_feature_drug_0.8_128_0.01.csv'
+    file_path = '../../../feature/gate_feature_mRNA_0.8_128_0.01.csv'
 
     np.savetxt(file_path, embeddings, delimiter=',',)

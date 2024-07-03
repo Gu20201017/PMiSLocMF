@@ -76,7 +76,7 @@ def parse_args(epochs,l):
 
 if __name__ == '__main__':
     df_disease = pd.read_csv('../../../feature/miRNA_disease_feature_128.csv', index_col=0)
-    df_func = pd.read_csv('../../../datasets/miRNA_func_sim.csv', header=None)
+    df_func = pd.read_csv('../../../dataset/miRNA_func_sim.csv', header=None)
 
     feature = df_disease.values
     similarity = df_func.values
@@ -90,4 +90,4 @@ if __name__ == '__main__':
     # 指定要保存的CSV文件的路径
     file_path = '../../../feature/gate_feature_disease_0.8_128_0.01.csv'
 
-    np.savetxt(file_path, embeddings, delimiter=',',)
+    # np.savetxt(file_path, embeddings, delimiter=',',)

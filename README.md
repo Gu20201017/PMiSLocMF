@@ -2,7 +2,7 @@
 
 The PMiSLocMF is designed for the prediction of miRNA subcellular localizations. Several miRNA properties are employed to extract informative miRNA features, including miRNA sequence and functional similarity networks, miRNA-disease, miRNA-drug, and miRNA-mRNA association networks. The powerful algorithms (node2vec and graph attention auto-encoder) and one newly designed scheme are adopted to generate four miRNA feature types. These features are fed into the self-attention and fully connected layers to make predictions.
 
-![model](./model.jpg)
+![model](./model.png)
 
 ## Datasets
 The 'datasets' folder contains the raw data used in PMiSLocMF. Their specific sources are detailed in the paper. The following is a brief introduction on each file:
@@ -24,9 +24,11 @@ The 'feature' folder contains the feature data used in PMiSLocMF. The following 
 - miRNA_seq_feature_64.csv: MiRNA sequence features extracted from miRNA sequence similarity network through Node2Vec
 - miRNA_disease_feature_128.csv: Raw miRNA disease features extracted from miRNA-disease association network through Node2vec 
 - miRNA_drug_feature_128.csv: Raw miRNA drug features extracted from miRNA-drug association network through Node2vec
-- miRNA_mRNA_feature.csv: MiRNA mRNA features extracted from miRNA-mRNA association network
+- miRNA_mRNA_network_feature_128.csv: Raw miRNA mRNA features extracted from miRNA-mRNA association network through Node2vec
+- miRNA_mRNA_co-localization_feature.csv: MiRNA mRNA co-localization features extracted from miRNA-mRNA association network
 - gate_feature_disease_0.8_128_0.01.csv: High-level miRNA disease features improved by GATE
 - gate_feature_drug_0.8_128_0.01.csv: High-level miRNA drug features improved by GATE
+- gate_feature_mRNA_0.8_128_0.01.csv: High-level miRNA mRNA features improved by GATE
 
 ## Code
 

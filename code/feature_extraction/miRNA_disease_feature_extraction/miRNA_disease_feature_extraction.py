@@ -5,7 +5,7 @@ import networkx as nx
 from node2vec import Node2Vec
 
 if __name__ == '__main__':
-    df_miRNA_dis = pd.read_csv('../../../datasets/miRNA_disease.csv', header=None)
+    df_miRNA_dis = pd.read_csv('../../../dataset/miRNA_disease.csv', header=None)
     miRNA_dis_matrix = df_miRNA_dis.values
     print(miRNA_dis_matrix.shape)
 
@@ -42,4 +42,4 @@ if __name__ == '__main__':
     df = pd.DataFrame.from_dict(miRNA_features, orient='index')
     df.columns = [f'Dimension_{i}' for i in range(128)]  # 列名可以根据需要自定义
     print(df)
-    df.to_csv('../../feature/miRNA_disease_feature_128.csv')
+    df.to_csv('../../../feature/miRNA_disease_feature_128.csv')
